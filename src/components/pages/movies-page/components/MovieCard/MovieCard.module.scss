@@ -1,0 +1,50 @@
+.card {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  background-color: black;
+  height: 100%;
+  cursor: pointer;
+
+  .info {
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0;
+    transition: 0.3s;
+    padding: 10px;
+  }
+
+  .image {
+    opacity: 1;
+    transition: 0.3s;
+  }
+
+  &:hover {
+    .image {
+      opacity: 0.3;
+    }
+
+    .info {
+      opacity: 1;
+      b {
+        color: white;
+        position: absolute;
+        bottom: 0;
+      }
+
+      .type {
+        right: 10px;
+      }
+
+      .year {
+        left: 10px;
+      }
+
+      h1 {
+        color: chocolate;
+      }
+    }
+  }
+}

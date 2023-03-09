@@ -1,6 +1,8 @@
 import "src/styles/globals.scss";
 import type { AppProps } from "next/app";
+import { store } from "@/redux/store";
 import Head from "next/head";
+import { Provider } from "react-redux";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -38,7 +40,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </>
   );
 }
