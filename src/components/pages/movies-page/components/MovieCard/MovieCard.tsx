@@ -1,8 +1,7 @@
-import { Movie } from "@/redux/movies/types";
-import { HtmlProps } from "next/dist/shared/lib/html-context";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
+import { Movie } from "@/redux/movies/types";
 import styles from "./MovieCard.module.scss";
 
 const MovieCard: React.FC<Movie> = ({ Title, Year, imdbID, Type, Poster }) => {

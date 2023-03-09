@@ -16,6 +16,15 @@
     padding: 10px;
   }
 
+  h1 {
+    color: chocolate;
+    opacity: 0;
+  }
+  b {
+    opacity: 0;
+    color: white;
+  }
+
   .image {
     opacity: 1;
     transition: 0.3s;
@@ -31,19 +40,19 @@
       b {
         color: white;
         position: absolute;
+        opacity: 1;
         bottom: 0;
       }
 
+      h1 {
+        opacity: 1;
+      }
       .type {
         right: 10px;
       }
 
       .year {
         left: 10px;
-      }
-
-      h1 {
-        color: chocolate;
       }
     }
   }
