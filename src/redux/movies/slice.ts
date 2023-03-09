@@ -26,9 +26,7 @@ const moviesSlice = createSlice({
     builder.addCase(fetchMovies.rejected, (state, action) => {
       state.status = Status.ERROR;
       state.movies = {
-        Search: [],
-        totalResults: "0",
-        Response: "False",
+        ...initialState.movies,
         Error: action.error.message,
       };
     });
