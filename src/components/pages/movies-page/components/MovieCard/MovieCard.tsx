@@ -6,7 +6,6 @@ import styles from "./MovieCard.module.scss";
 
 const MovieCard: React.FC<Movie> = ({ Title, Year, imdbID, Type, Poster }) => {
   const router = useRouter();
-
   return (
     <div
       className={styles.card}
@@ -16,7 +15,7 @@ const MovieCard: React.FC<Movie> = ({ Title, Year, imdbID, Type, Poster }) => {
     >
       <Image
         className={styles.image}
-        src={Poster}
+        src={Poster !== "N/A" ? Poster : "/noimage.png"}
         alt={`${Title} image`}
         fill
         sizes="100%"

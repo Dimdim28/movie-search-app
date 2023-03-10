@@ -1,9 +1,15 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/appHooks";
 import { fetchMovies } from "@/redux/movies/asyncActions";
-import { selectMovies, selectStatus } from "@/redux/movies/selectors";
+import {
+  selectError,
+  selectMovies,
+  selectStatus,
+} from "@/redux/movies/selectors";
 import { Status } from "@/redux/movies/types";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
+import { Container } from "@mui/system";
 import React, { useEffect } from "react";
+import CustomizedInputBase from "./components/CustomInput/CustomInput";
 import MovieCard from "./components/MovieCard";
 import styles from "./movies-page.module.scss";
 
@@ -11,25 +17,70 @@ const MoviesPage = () => {
   const dispatch = useAppDispatch();
   const movies = useAppSelector(selectMovies);
   const status = useAppSelector(selectStatus);
+  const error = useAppSelector(selectError);
+  const [search, setSearch] = React.useState<string>("star");
+  const [isActive, setIsActive] = React.useState<boolean>(true);
   useEffect(() => {
-    dispatch(fetchMovies({ title: "avatar" }));
-  }, []);
+    if (isActive) {
+      dispatch(fetchMovies({ title: search }));
+      setIsActive(false);
+    }
+  }, [dispatch, isActive, search]);
 
-  if (status === Status.LOADING) return <div>Loading...</div>;
-  if (status === Status.ERROR) return <div>error</div>;
+  if (status === Status.LOADING)
+    return (
+      <Container
+        sx={{
+          display: "flex",
+          height: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress />
+      </Container>
+    );
+  if (status === Status.ERROR) return <div>{error}</div>;
   return (
-    <Grid
-      container
-      spacing={2}
-      className={styles.movies}
-      columns={{ xs: 4, sm: 9, md: 12, lg: 15, xl: 18 }}
-    >
-      {movies.map((movie, id) => (
-        <Grid item key={id} xs={2} sm={3}>
-          <MovieCard {...movie} />
+    <Container>
+      <Grid
+        container
+        spacing={2}
+        className={styles.movies}
+        columns={{ xs: 4, sm: 9, md: 12, lg: 15, xl: 18 }}
+      >
+        <Grid
+          item
+          xs={4}
+          sm={9}
+          md={12}
+          lg={15}
+          xl={18}
+          className={styles.search}
+        >
+          <CustomizedInputBase
+            setIsActive={setIsActive}
+            setSearch={setSearch}
+            search={search}
+          />
         </Grid>
-      ))}
-    </Grid>
+        {movies.map((movie, id) => (
+          <Grid
+            item
+            key={id}
+            xs={2}
+            sm={3}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <MovieCard {...movie} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
 

@@ -18,15 +18,20 @@ const moviesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.pending, (state) => {
       state.status = Status.LOADING;
+      console.log("загрузка");
     });
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
       state.movies = action.payload;
       state.status = Status.SUCCESS;
+      console.log("успех");
     });
     builder.addCase(fetchMovies.rejected, (state, action) => {
       state.status = Status.ERROR;
+      console.log("пройоб");
       state.movies = {
-        ...initialState.movies,
+        Search: [],
+        totalResults: "0",
+        Response: "False",
         Error: action.error.message,
       };
     });
