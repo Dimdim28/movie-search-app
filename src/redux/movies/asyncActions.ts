@@ -13,7 +13,6 @@ export const fetchMovies = createAsyncThunk<Movies, SearchMoviesParams>(
       params: { s: title },
     });
     if (data.Response === "True") {
-      console.log("success");
       return data;
     } else {
       throw new Error(data.Error);

@@ -6,7 +6,7 @@ import {
   selectStatus,
 } from "@/redux/movies/selectors";
 import { Status } from "@/redux/movies/types";
-import { CircularProgress, Grid } from "@mui/material";
+import { Box, Button, CircularProgress, Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useEffect } from "react";
 import CustomizedInputBase from "./components/CustomInput/CustomInput";
@@ -40,7 +40,31 @@ const MoviesPage = () => {
         <CircularProgress />
       </Container>
     );
-  if (status === Status.ERROR) return <div>{error}</div>;
+  if (status === Status.ERROR)
+    return (
+      <Box
+        width="100%"
+        height="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+      >
+        <h1>{error}</h1>
+        <Button
+          variant="contained"
+          color="error"
+          size="large"
+          onClick={() => {
+            dispatch(fetchMovies({ title: "star" }));
+            setIsActive(false);
+          }}
+        >
+          Try again
+        </Button>
+      </Box>
+    );
+
   return (
     <Container>
       <Grid
