@@ -1,3 +1,4 @@
+import Error from "@/components/common/Error";
 import { useAppDispatch, useAppSelector } from "@/hooks/appHooks";
 import { fetchMovies } from "@/redux/movies/asyncActions";
 import {
@@ -41,29 +42,7 @@ const MoviesPage = () => {
       </Container>
     );
   if (status === Status.ERROR)
-    return (
-      <Box
-        width="100%"
-        height="100%"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        flexDirection="column"
-      >
-        <h1>{error}</h1>
-        <Button
-          variant="contained"
-          color="error"
-          size="large"
-          onClick={() => {
-            dispatch(fetchMovies({ title: "star" }));
-            setIsActive(false);
-          }}
-        >
-          Try again
-        </Button>
-      </Box>
-    );
+    return <Error text={error || ""} setIsActive={setIsActive} />;
 
   return (
     <Container>
