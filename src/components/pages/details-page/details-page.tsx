@@ -47,10 +47,17 @@ const DetailsPage = () => {
     if (isReady) {
       dispatch(fetchDetails({ id: asPath.replace("/details/", "") }));
     }
-  }, [asPath]);
+  }, [asPath, isReady]);
 
   if (status === Status.LOADING) return <Loader />;
-  if (status === Status.ERROR) return <Error text={error || ""} />;
+  if (status === Status.ERROR)
+    return (
+      <Error
+        text={error || "Error occured =("}
+        callback={() => router.push("/")}
+        label="back to list"
+      />
+    );
 
   return (
     <div className={styles.wrapper}>

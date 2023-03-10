@@ -7,9 +7,11 @@ import React from "react";
 interface Error {
   text: string;
   setIsActive?: React.Dispatch<React.SetStateAction<boolean>>;
+  callback?: () => void;
+  label: string;
 }
 
-const Error: React.FC<Error> = ({ text, setIsActive }) => {
+const Error: React.FC<Error> = ({ text, setIsActive, callback, label }) => {
   const dispatch = useAppDispatch();
   return (
     <Box
@@ -26,11 +28,14 @@ const Error: React.FC<Error> = ({ text, setIsActive }) => {
         color="error"
         size="large"
         onClick={() => {
-          dispatch(fetchMovies({ title: "star" }));
-          setIsActive && setIsActive(false);
+          if (setIsActive) {
+            dispatch(fetchMovies({ title: "star" }));
+            setIsActive(false);
+          }
+          if (callback) callback();
         }}
       >
-        Try again
+        {label}
       </Button>
     </Box>
   );

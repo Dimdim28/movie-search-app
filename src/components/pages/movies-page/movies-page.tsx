@@ -31,7 +31,13 @@ const MoviesPage = () => {
 
   if (status === Status.LOADING) return <Loader />;
   if (status === Status.ERROR)
-    return <Error text={error || ""} setIsActive={setIsActive} />;
+    return (
+      <Error
+        text={error || "Error occured =("}
+        setIsActive={setIsActive}
+        label="back"
+      />
+    );
 
   return (
     <Container>
