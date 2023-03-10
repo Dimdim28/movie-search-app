@@ -14,6 +14,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import LanguageIcon from "@mui/icons-material/Language";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const DetailsPage = () => {
   const router = useRouter();
@@ -54,7 +55,7 @@ const DetailsPage = () => {
     return (
       <Error
         text={error || "Error occured =("}
-        callback={() => router.push("/")}
+        callback={() => router.back()}
         label="back to list"
       />
     );
@@ -62,7 +63,13 @@ const DetailsPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.general}>
-        <h1>{Title}</h1>
+        <h1>
+          <ArrowBackIcon
+            className={styles.back}
+            onClick={() => router.back()}
+          />
+          {Title}
+        </h1>
         <p>
           <b>Rated:</b> {Rated}
         </p>

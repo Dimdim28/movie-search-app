@@ -14,7 +14,13 @@
   height: 100%;
 
   h1 {
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
+    .back {
+      color: grey;
+      cursor: pointer;
+    }
   }
 
   p {
