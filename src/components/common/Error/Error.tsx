@@ -6,7 +6,7 @@ import React from "react";
 
 interface Error {
   text: string;
-  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsActive?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Error: React.FC<Error> = ({ text, setIsActive }) => {
@@ -27,7 +27,7 @@ const Error: React.FC<Error> = ({ text, setIsActive }) => {
         size="large"
         onClick={() => {
           dispatch(fetchMovies({ title: "star" }));
-          setIsActive(false);
+          setIsActive && setIsActive(false);
         }}
       >
         Try again

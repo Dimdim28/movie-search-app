@@ -18,6 +18,7 @@ export type Details = {
   Country: string;
   Awards: string;
   Poster: string;
+  Ratings: Rating[];
   Metascore: string;
   imdbRating: string;
   imdbVotes: string;
