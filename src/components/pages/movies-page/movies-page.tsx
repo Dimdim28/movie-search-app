@@ -1,4 +1,5 @@
 import Error from "@/components/common/Error";
+import Loader from "@/components/common/Loader";
 import { useAppDispatch, useAppSelector } from "@/hooks/appHooks";
 import { fetchMovies } from "@/redux/movies/asyncActions";
 import {
@@ -7,7 +8,7 @@ import {
   selectStatus,
 } from "@/redux/movies/selectors";
 import { Status } from "@/redux/movies/types";
-import { Box, Button, CircularProgress, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useEffect } from "react";
 import CustomizedInputBase from "./components/CustomInput/CustomInput";
@@ -28,19 +29,7 @@ const MoviesPage = () => {
     }
   }, [dispatch, isActive, search]);
 
-  if (status === Status.LOADING)
-    return (
-      <Container
-        sx={{
-          display: "flex",
-          height: "100vh",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <CircularProgress />
-      </Container>
-    );
+  if (status === Status.LOADING) return <Loader />;
   if (status === Status.ERROR)
     return <Error text={error || ""} setIsActive={setIsActive} />;
 
