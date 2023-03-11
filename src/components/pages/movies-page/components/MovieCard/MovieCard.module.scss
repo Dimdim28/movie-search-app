@@ -20,26 +20,16 @@
     align-items: center;
     justify-content: space-between;
 
-    .add {
-      color: red;
-      transition: color 0.3s;
-      &:hover {
-        color: rgb(194, 21, 21);
-      }
-    }
-
     .remove,
     .add {
       height: 80px;
       width: 80px;
       margin-bottom: calc(50% + 40px);
       opacity: 0;
-    }
-
-    .remove {
-      color: white;
+      color: red;
+      transition: color 0.3s;
       &:hover {
-        color: rgb(196, 196, 196);
+        color: rgb(194, 21, 21);
       }
     }
 

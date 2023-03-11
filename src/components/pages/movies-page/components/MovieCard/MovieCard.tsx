@@ -4,7 +4,7 @@ import React from "react";
 import { Movie } from "@/redux/movies/types";
 import styles from "./MovieCard.module.scss";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import CancelIcon from "@mui/icons-material/Cancel";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useAppDispatch } from "@/hooks/appHooks";
 import { addFavorite, removeFavorite } from "@/redux/movies/slice";
 
@@ -36,7 +36,7 @@ const MovieCard: React.FC<Movie & { isFavorite: boolean }> = ({
       <div className={styles.info}>
         <h2>{Title}</h2>
         {isFavorite ? (
-          <CancelIcon
+          <FavoriteIcon
             className={styles.remove}
             onClick={(e) => {
               e.stopPropagation();
@@ -44,7 +44,7 @@ const MovieCard: React.FC<Movie & { isFavorite: boolean }> = ({
             }}
           />
         ) : (
-          <FavoriteIcon
+          <FavoriteBorderIcon
             className={styles.add}
             onClick={(e) => {
               e.stopPropagation();
