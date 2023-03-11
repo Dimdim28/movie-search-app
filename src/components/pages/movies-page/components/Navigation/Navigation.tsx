@@ -1,3 +1,5 @@
+import { useAppDispatch } from "@/hooks/appHooks";
+import { setCurrentPage } from "@/redux/movies/slice";
 import { Container } from "@mui/system";
 import React from "react";
 import styles from "./Navigation.module.scss";
@@ -14,10 +16,12 @@ const Navigation: React.FC<NavigationProps> = ({
   setCurrent,
   setIsActive,
 }) => {
+  const dispatch = useAppDispatch();
   const next = (current: number) => {
     if (current < total) {
       setCurrent(++current);
       setIsActive(true);
+      dispatch(setCurrentPage(++current));
     }
   };
 
@@ -25,12 +29,14 @@ const Navigation: React.FC<NavigationProps> = ({
     if (current > 1) {
       setCurrent(--current);
       setIsActive(true);
+      dispatch(setCurrentPage(--current));
     }
   };
 
   const setPage = (page: number) => {
     setCurrent(page);
     setIsActive(true);
+    dispatch(setCurrentPage(page));
   };
   return (
     <Container>

@@ -3,9 +3,11 @@ import Loader from "@/components/common/Loader";
 import { useAppDispatch, useAppSelector } from "@/hooks/appHooks";
 import { fetchMovies } from "@/redux/movies/asyncActions";
 import {
+  selectCurrentPage,
   selectError,
   selectMovies,
   selectPages,
+  selectSearch,
   selectStatus,
 } from "@/redux/movies/selectors";
 import { Status } from "@/redux/movies/types";
@@ -23,17 +25,20 @@ const MoviesPage = () => {
   const movies = useAppSelector(selectMovies);
   const status = useAppSelector(selectStatus);
   const error = useAppSelector(selectError);
-  const [search, setSearch] = React.useState<string>("star");
+  const searchFromRedux = useSelector(selectSearch);
+  const currentPageFromRedux = useSelector(selectCurrentPage);
+
+  const [search, setSearch] = React.useState<string>(searchFromRedux);
   const [isActive, setIsActive] = React.useState<boolean>(true);
   const totalPages = useSelector(selectPages);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(currentPageFromRedux);
   useEffect(() => {
     if (isActive) {
       dispatch(fetchMovies({ title: search, page: currentPage }));
       setIsActive(false);
     }
   }, [dispatch, isActive, search, currentPage]);
-
+  //вероятно придется еще юзеффектом послушать изменения редакса и обновить обычный стейт
   if (status === Status.LOADING) return <Loader />;
   if (status === Status.ERROR)
     return (

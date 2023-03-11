@@ -8,13 +8,22 @@ const initialState: MoviesSliceState = {
     totalResults: "0",
     Response: "False",
   },
+  search: "star",
+  currentPage: 1,
   status: Status.LOADING,
 };
 
 const moviesSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchValue(state, action) {
+      state.search = action.payload;
+    },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.pending, (state) => {
       state.status = Status.LOADING;
@@ -29,5 +38,7 @@ const moviesSlice = createSlice({
     });
   },
 });
+
+export const { setSearchValue, setCurrentPage } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

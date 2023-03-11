@@ -22,6 +22,8 @@ export enum Status {
 export interface MoviesSliceState {
   status: Status;
   movies: Movies;
+  currentPage: number;
+  search: string;
 }
 
 export type SearchMoviesParams = {
