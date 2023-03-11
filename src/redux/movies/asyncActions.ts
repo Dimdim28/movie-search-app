@@ -10,7 +10,7 @@ export const fetchMovies = createAsyncThunk<Movies, SearchMoviesParams>(
     const title = decodeURI(params.title.trim());
     const page = String(params.page);
     const { data } = await axiosInstance.get("", {
-      params: { s: title, page },
+      params: { s: title || "way", page: page || 1 },
     });
     if (data.Response === "True") {
       return data;
