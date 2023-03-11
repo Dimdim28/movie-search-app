@@ -38,6 +38,13 @@ const CustomizedInputBase: React.FC<IProps> = ({
         placeholder="Search Your Movie"
         value={search}
         onChange={onChange}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            setIsActive(true);
+            setCurrentPage(1);
+          }
+        }}
       />
       <IconButton
         type="button"
