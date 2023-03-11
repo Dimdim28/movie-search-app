@@ -12,7 +12,7 @@ const initialState: MoviesSliceState = {
     totalResults: "0",
     Response: "False",
   },
-  search: "star",
+  search: "way",
   currentPage: 1,
   status: Status.LOADING,
   favorites: [],

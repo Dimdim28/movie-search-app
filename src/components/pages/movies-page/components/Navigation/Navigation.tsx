@@ -52,7 +52,7 @@ const Navigation: React.FC<NavigationProps> = ({
     <Container>
       <div className={styles.wrapper}>
         <div
-          className={styles.button}
+          className={current > 1 ? styles.button : styles.disabledButton}
           onClick={() => {
             prev(current);
           }}
@@ -189,7 +189,9 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         )}
         <div
-          className={styles.button}
+          className={
+            current < total - 1 ? styles.button : styles.disabledButton
+          }
           onClick={() => {
             next(current);
           }}
