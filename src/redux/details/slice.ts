@@ -28,6 +28,7 @@ const initialState: DetailsSliceState = {
     Production: "",
     Website: "",
     Response: "False",
+    Ratings: [],
   },
   status: Status.LOADING,
 };
