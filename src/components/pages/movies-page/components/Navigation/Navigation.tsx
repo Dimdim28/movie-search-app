@@ -80,7 +80,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         )}
 
-        {total === current && (
+        {total === current && total > 4 && (
           <div
             className={styles.button}
             onClick={() => {
@@ -91,7 +91,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         )}
 
-        {[total - 1, total].includes(current) && (
+        {[total - 1, total].includes(current) && total > 3 && (
           <div
             className={styles.button}
             onClick={() => {
@@ -102,7 +102,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         )}
 
-        {[total - 2, total - 1, total].includes(current) && (
+        {[total - 2, total - 1, total].includes(current) && total > 2 && (
           <div
             className={styles.button}
             onClick={() => {
@@ -135,7 +135,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         )}
 
-        {[1, 2, 3].includes(current) && (
+        {[1, 2, 3].includes(current) && total > current + 2 && (
           <div
             className={styles.button}
             onClick={() => {
@@ -146,7 +146,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         )}
 
-        {[1, 2].includes(current) && (
+        {[1, 2].includes(current) && total > current + 3 && (
           <div
             className={styles.button}
             onClick={() => {
@@ -157,7 +157,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         )}
 
-        {1 === current && (
+        {1 === current && total > current + 4 && (
           <div
             className={styles.button}
             onClick={() => {
@@ -189,9 +189,7 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         )}
         <div
-          className={
-            current < total - 1 ? styles.button : styles.disabledButton
-          }
+          className={current < total ? styles.button : styles.disabledButton}
           onClick={() => {
             next(current);
           }}

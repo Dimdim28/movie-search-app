@@ -43,7 +43,8 @@
 
 @media screen and (max-width: 768px) {
   .button,
-  .currentButton {
+  .currentButton,
+  .disabledButton {
     margin: 0 3px;
     font-size: 15px;
     height: 40px;
@@ -53,7 +54,8 @@
 
 @media screen and (max-width: 480px) {
   .button,
-  .currentButton {
+  .currentButton,
+  .disabledButton {
     margin: 0 3px;
     font-size: 15px;
     height: 30px;
