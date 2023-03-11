@@ -42,6 +42,19 @@
         color: rgb(196, 196, 196);
       }
     }
+
+    .year,
+    .type {
+      position: absolute;
+      bottom: 0;
+    }
+    .type {
+      right: 10px;
+    }
+
+    .year {
+      left: 10px;
+    }
   }
 
   h2 {
@@ -81,14 +94,6 @@
       h2 {
         opacity: 1;
       }
-
-      .type {
-        right: 10px;
-      }
-
-      .year {
-        left: 10px;
-      }
     }
   }
 }
@@ -101,6 +106,24 @@
     }
     h2 {
       font-size: 14px;
+    }
+  }
+}
+
+@media screen and (hover: none) {
+  .card {
+    .image {
+      opacity: 0.5;
+    }
+    .info {
+      opacity: 1;
+      b,
+      p,
+      h2,
+      .add,
+      .remove {
+        opacity: 1;
+      }
     }
   }
 }
