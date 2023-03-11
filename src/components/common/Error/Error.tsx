@@ -29,7 +29,7 @@ const Error: React.FC<Error> = ({ text, setIsActive, callback, label }) => {
         size="large"
         onClick={() => {
           if (setIsActive) {
-            dispatch(fetchMovies({ title: "star" }));
+            dispatch(fetchMovies({ title: "star", page: 1 }));
             setIsActive(false);
           }
           if (callback) callback();
