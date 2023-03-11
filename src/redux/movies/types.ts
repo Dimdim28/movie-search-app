@@ -26,4 +26,5 @@ export interface MoviesSliceState {
 
 export type SearchMoviesParams = {
   title: string;
+  page: number;
 };

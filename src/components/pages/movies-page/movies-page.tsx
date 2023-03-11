@@ -5,12 +5,15 @@ import { fetchMovies } from "@/redux/movies/asyncActions";
 import {
   selectError,
   selectMovies,
+  selectPages,
   selectStatus,
 } from "@/redux/movies/selectors";
 import { Status } from "@/redux/movies/types";
 import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Navigation from "../components/Navigation";
 import CustomizedInputBase from "./components/CustomInput/CustomInput";
 import MovieCard from "./components/MovieCard";
 import styles from "./movies-page.module.scss";
@@ -22,12 +25,14 @@ const MoviesPage = () => {
   const error = useAppSelector(selectError);
   const [search, setSearch] = React.useState<string>("star");
   const [isActive, setIsActive] = React.useState<boolean>(true);
+  const totalPages = useSelector(selectPages);
+  const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     if (isActive) {
-      dispatch(fetchMovies({ title: search }));
+      dispatch(fetchMovies({ title: search, page: currentPage }));
       setIsActive(false);
     }
-  }, [dispatch, isActive, search]);
+  }, [dispatch, isActive, search, currentPage]);
 
   if (status === Status.LOADING) return <Loader />;
   if (status === Status.ERROR)
@@ -60,6 +65,7 @@ const MoviesPage = () => {
             setIsActive={setIsActive}
             setSearch={setSearch}
             search={search}
+            setCurrentPage={setCurrentPage}
           />
         </Grid>
         {movies.map((movie, id) => (
@@ -78,6 +84,12 @@ const MoviesPage = () => {
           </Grid>
         ))}
       </Grid>
+      <Navigation
+        total={totalPages}
+        current={currentPage}
+        setCurrent={setCurrentPage}
+        setIsActive={setIsActive}
+      />
     </Container>
   );
 };

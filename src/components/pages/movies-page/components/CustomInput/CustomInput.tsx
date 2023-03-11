@@ -8,15 +8,18 @@ interface IProps {
   search: string;
   setIsActive: (arg: boolean) => void;
   setSearch: (arg: string) => void;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CustomizedInputBase: React.FC<IProps> = ({
   search,
   setIsActive,
   setSearch,
+  setCurrentPage,
 }) => {
   const onClick = () => {
     setIsActive(true);
+    setCurrentPage(1);
   };
 
   const onChange = React.useCallback(

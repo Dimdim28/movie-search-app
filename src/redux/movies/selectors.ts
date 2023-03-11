@@ -7,3 +7,5 @@ export const selectResponse = (state: RootState) =>
   state.movies.movies.Response;
 export const selectError = (state: RootState) => state.movies.movies.Error;
 export const selectStatus = (state: RootState) => state.movies.status;
+export const selectPages = (state: RootState) =>
+  Math.round(Number(state.movies.movies.totalResults) / 10);

@@ -19,6 +19,7 @@ const MovieCard: React.FC<Movie> = ({ Title, Year, imdbID, Type, Poster }) => {
         alt={`${Title} image`}
         fill
         sizes="100%"
+        priority
       />
       <div className={styles.info}>
         <h1>{Title}</h1>
