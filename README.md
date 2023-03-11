@@ -5,7 +5,7 @@ You can use the app on both touch devices and computers. [Link on deployed appli
 # Installation
 
 1. Download repository
-2. Create a file and paste the following code there:
+2. Create a .env.local file in the root folder and paste the following code there:
 ```
 NEXT_PUBLIC_API_KEY=<your api key>
 NEXT_PUBLIC_API_URL=https://www.omdbapi.com
