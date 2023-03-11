@@ -22,6 +22,13 @@ pnpm dev
 ```
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+# Functionality
+
+* There is a SearchBar on the top right of the screen, you can press enter or click the search icon to get the results.
+* You can click the Movie card to go to the page with more details and after that click on the back icon near the movie title.
+* Click on the Like icon to add movie to favorites and click again to remove, scroll down to see the list with your favorites movies =)
+* At the bottom of the screen there is a NavBar with buttons to navigate to the next, previous, first and last pages. 
+
 # Used technologies:
 * ReactJS 18
 * Next js
