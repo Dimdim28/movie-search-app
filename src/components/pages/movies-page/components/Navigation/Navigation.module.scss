@@ -51,18 +51,3 @@
     width: 40px;
   }
 }
-
-@media screen and (max-width: 480px) {
-  .button,
-  .currentButton,
-  .disabledButton {
-    margin: 0 3px;
-    font-size: 15px;
-    height: 30px;
-    width: 30px;
-  }
-  .button:last-child,
-  .button:first-child {
-    display: none;
-  }
-}
