@@ -97,6 +97,14 @@
     h2 {
       font-size: 14px;
     }
+    .info {
+      .add,
+      .remove {
+        height: 50px;
+        width: 50px;
+        margin-bottom: calc(50% - 20px);
+      }
+    }
   }
 }
 
