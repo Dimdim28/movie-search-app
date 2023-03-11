@@ -13,7 +13,7 @@ import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Navigation from "../components/Navigation";
+import Navigation from "./components/Navigation";
 import CustomizedInputBase from "./components/CustomInput/CustomInput";
 import MovieCard from "./components/MovieCard";
 import styles from "./movies-page.module.scss";

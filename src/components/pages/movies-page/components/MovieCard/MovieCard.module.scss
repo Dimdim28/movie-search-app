@@ -29,6 +29,7 @@
   .image {
     opacity: 1;
     transition: 0.3s;
+    color: white;
   }
 
   &:hover {
@@ -55,6 +56,15 @@
       .year {
         left: 10px;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    min-height: 200px;
+    .image {
+      height: 200px;
     }
   }
 }
