@@ -46,40 +46,22 @@ const MoviesPage = () => {
 
   return (
     <Container>
+      <div className={styles.search}>
+        <CustomizedInputBase
+          setIsActive={setIsActive}
+          setSearch={setSearch}
+          search={search}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
       <Grid
         container
-        spacing={2}
+        columnSpacing={1}
         className={styles.movies}
         columns={{ xs: 4, sm: 9, md: 12, lg: 15, xl: 18 }}
       >
-        <Grid
-          item
-          xs={4}
-          sm={9}
-          md={12}
-          lg={15}
-          xl={18}
-          className={styles.search}
-        >
-          <CustomizedInputBase
-            setIsActive={setIsActive}
-            setSearch={setSearch}
-            search={search}
-            setCurrentPage={setCurrentPage}
-          />
-        </Grid>
         {movies.map((movie, id) => (
-          <Grid
-            item
-            key={id}
-            xs={2}
-            sm={3}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <Grid item key={id} xs={2} sm={3} className={styles.card}>
             <MovieCard {...movie} />
           </Grid>
         ))}
