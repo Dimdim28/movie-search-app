@@ -20,6 +20,8 @@ import Navigation from "./components/Navigation";
 import CustomizedInputBase from "./components/CustomInput/CustomInput";
 import MovieCard from "./components/MovieCard";
 import styles from "./movies-page.module.scss";
+import { getFavoritesFromLocalStorage } from "@/utils/localStorage";
+import { setFavorites } from "@/redux/movies/slice";
 
 const MoviesPage = () => {
   const dispatch = useAppDispatch();
@@ -33,6 +35,11 @@ const MoviesPage = () => {
   const [isActive, setIsActive] = React.useState<boolean>(true);
   const totalPages = useSelector(selectPages);
   const [currentPage, setCurrentPage] = useState(currentPageFromRedux);
+
+  useEffect(() => {
+    dispatch(setFavorites());
+  }, []);
+
   useEffect(() => {
     if (isActive) {
       dispatch(fetchMovies({ title: search, page: currentPage }));

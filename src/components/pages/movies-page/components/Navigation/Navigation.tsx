@@ -1,7 +1,7 @@
 import { useAppDispatch } from "@/hooks/appHooks";
 import { setCurrentPage } from "@/redux/movies/slice";
 import { Container } from "@mui/system";
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "./Navigation.module.scss";
 interface NavigationProps {
   current: number;
@@ -17,27 +17,37 @@ const Navigation: React.FC<NavigationProps> = ({
   setIsActive,
 }) => {
   const dispatch = useAppDispatch();
-  const next = (current: number) => {
-    if (current < total) {
-      setCurrent(++current);
-      setIsActive(true);
-      dispatch(setCurrentPage(++current));
-    }
-  };
+  const next = useCallback(
+    (current: number) => {
+      if (current < total) {
+        setCurrent(++current);
+        setIsActive(true);
+        dispatch(setCurrentPage(++current));
+      }
+    },
+    [dispatch, setCurrent, setIsActive, total]
+  );
 
-  const prev = (current: number) => {
-    if (current > 1) {
-      setCurrent(--current);
-      setIsActive(true);
-      dispatch(setCurrentPage(--current));
-    }
-  };
+  const prev = useCallback(
+    (current: number) => {
+      if (current > 1) {
+        setCurrent(--current);
+        setIsActive(true);
+        dispatch(setCurrentPage(--current));
+      }
+    },
+    [dispatch, setCurrent, setIsActive]
+  );
 
-  const setPage = (page: number) => {
-    setCurrent(page);
-    setIsActive(true);
-    dispatch(setCurrentPage(page));
-  };
+  const setPage = useCallback(
+    (page: number) => {
+      setCurrent(page);
+      setIsActive(true);
+      dispatch(setCurrentPage(page));
+    },
+    [dispatch, setCurrent, setIsActive]
+  );
+
   return (
     <Container>
       <div className={styles.wrapper}>

@@ -1,3 +1,7 @@
+import {
+  getFavoritesFromLocalStorage,
+  putFavoritesToLocalStorage,
+} from "./../../utils/localStorage";
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchMovies } from "./asyncActions";
 import { MoviesSliceState, Status } from "./types";
@@ -24,13 +28,20 @@ const moviesSlice = createSlice({
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
     },
+    setFavorites(state) {
+      state.favorites = getFavoritesFromLocalStorage();
+    },
     addFavorite(state, action) {
-      state.favorites = [...state.favorites, action.payload];
+      const newFavorites = [...state.favorites, action.payload];
+      state.favorites = newFavorites;
+      putFavoritesToLocalStorage(newFavorites);
     },
     removeFavorite(state, action) {
-      state.favorites = state.favorites.filter(
+      const newFavorites = state.favorites.filter(
         (favorite) => favorite.imdbID !== action.payload
       );
+      state.favorites = newFavorites;
+      putFavoritesToLocalStorage(newFavorites);
     },
   },
   extraReducers: (builder) => {
@@ -48,7 +59,12 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { setSearchValue, setCurrentPage, addFavorite, removeFavorite } =
-  moviesSlice.actions;
+export const {
+  setSearchValue,
+  setCurrentPage,
+  addFavorite,
+  removeFavorite,
+  setFavorites,
+} = moviesSlice.actions;
 
 export default moviesSlice.reducer;
