@@ -3,9 +3,21 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Movie } from "@/redux/movies/types";
 import styles from "./MovieCard.module.scss";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CancelIcon from "@mui/icons-material/Cancel";
+import { useAppDispatch } from "@/hooks/appHooks";
+import { addFavorite, removeFavorite } from "@/redux/movies/slice";
 
-const MovieCard: React.FC<Movie> = ({ Title, Year, imdbID, Type, Poster }) => {
+const MovieCard: React.FC<Movie & { isFavorite: boolean }> = ({
+  Title,
+  Year,
+  imdbID,
+  Type,
+  Poster,
+  isFavorite,
+}) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   return (
     <div
       className={styles.card}
@@ -22,7 +34,33 @@ const MovieCard: React.FC<Movie> = ({ Title, Year, imdbID, Type, Poster }) => {
         priority
       />
       <div className={styles.info}>
-        <h1>{Title}</h1>
+        <h2>{Title}</h2>
+        {isFavorite ? (
+          <CancelIcon
+            className={styles.remove}
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(removeFavorite(imdbID));
+            }}
+          />
+        ) : (
+          <FavoriteIcon
+            className={styles.add}
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(
+                addFavorite({
+                  Title,
+                  Year,
+                  imdbID,
+                  Type,
+                  Poster,
+                  isFavorite: true,
+                })
+              );
+            }}
+          />
+        )}
         <b className={styles.year}>{Year}</b>
         <b className={styles.type}>{Type}</b>
       </div>

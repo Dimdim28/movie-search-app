@@ -5,6 +5,7 @@ import { fetchMovies } from "@/redux/movies/asyncActions";
 import {
   selectCurrentPage,
   selectError,
+  selectFavorites,
   selectMovies,
   selectPages,
   selectSearch,
@@ -27,7 +28,7 @@ const MoviesPage = () => {
   const error = useAppSelector(selectError);
   const searchFromRedux = useSelector(selectSearch);
   const currentPageFromRedux = useSelector(selectCurrentPage);
-
+  const favorites = useSelector(selectFavorites);
   const [search, setSearch] = React.useState<string>(searchFromRedux);
   const [isActive, setIsActive] = React.useState<boolean>(true);
   const totalPages = useSelector(selectPages);
@@ -38,7 +39,6 @@ const MoviesPage = () => {
       setIsActive(false);
     }
   }, [dispatch, isActive, search, currentPage]);
-  //вероятно придется еще юзеффектом послушать изменения редакса и обновить обычный стейт
   if (status === Status.LOADING) return <Loader />;
   if (status === Status.ERROR)
     return (
@@ -65,11 +65,39 @@ const MoviesPage = () => {
         className={styles.movies}
         columns={{ xs: 4, sm: 9, md: 12, lg: 15, xl: 18 }}
       >
+        <Grid item xs={4} sm={9} md={12} lg={15} xl={18}>
+          <div className={styles.title}>
+            <h1>Movies</h1>
+          </div>
+        </Grid>
         {movies.map((movie, id) => (
           <Grid item key={id} xs={2} sm={3} className={styles.card}>
-            <MovieCard {...movie} />
+            <MovieCard
+              isFavorite={
+                favorites.findIndex((el) => el.imdbID === movie.imdbID) > -1
+              }
+              {...movie}
+            />
           </Grid>
         ))}
+        <Grid item xs={4} sm={9} md={12} lg={15} xl={18}>
+          <div className={styles.title}>
+            <h1>Favorites</h1>
+          </div>
+        </Grid>
+        {favorites.length > 0 ? (
+          favorites.map((movie, id) => (
+            <Grid item key={id} xs={2} sm={3} className={styles.card}>
+              <MovieCard isFavorite={true} {...movie} />
+            </Grid>
+          ))
+        ) : (
+          <Grid item xs={4} sm={9} md={12} lg={15} xl={18}>
+            <div className={styles.title}>
+              <p>Nothing to show =( Click on heart to add movie to favorite</p>
+            </div>
+          </Grid>
+        )}
       </Grid>
       <Navigation
         total={totalPages}

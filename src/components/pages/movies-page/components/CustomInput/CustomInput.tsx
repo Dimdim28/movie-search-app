@@ -4,7 +4,10 @@ import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { useAppDispatch } from "@/hooks/appHooks";
-import { setSearchValue } from "@/redux/movies/slice";
+import {
+  setSearchValue,
+  setCurrentPage as setPage,
+} from "@/redux/movies/slice";
 
 interface IProps {
   search: string;
@@ -24,6 +27,7 @@ const CustomizedInputBase: React.FC<IProps> = ({
   const onClick = () => {
     setIsActive(true);
     setCurrentPage(1);
+    dispatch(setPage(1));
     dispatch(setSearchValue(search));
   };
 
@@ -48,6 +52,7 @@ const CustomizedInputBase: React.FC<IProps> = ({
             e.preventDefault();
             setIsActive(true);
             setCurrentPage(1);
+            dispatch(setPage(1));
             dispatch(setSearchValue(search));
           }
         }}

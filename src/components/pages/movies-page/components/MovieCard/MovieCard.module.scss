@@ -15,11 +15,39 @@
     opacity: 0;
     transition: 0.3s;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .add {
+      color: red;
+      transition: color 0.3s;
+      &:hover {
+        color: rgb(194, 21, 21);
+      }
+    }
+
+    .remove,
+    .add {
+      height: 80px;
+      width: 80px;
+      margin-bottom: calc(50% + 40px);
+      opacity: 0;
+    }
+
+    .remove {
+      color: white;
+      &:hover {
+        color: rgb(196, 196, 196);
+      }
+    }
   }
 
-  h1 {
+  h2 {
     color: chocolate;
     opacity: 0;
+    text-align: center;
   }
   b {
     opacity: 0;
@@ -45,10 +73,15 @@
         opacity: 1;
         bottom: 0;
       }
-
-      h1 {
+      .add,
+      .remove {
         opacity: 1;
       }
+
+      h2 {
+        opacity: 1;
+      }
+
       .type {
         right: 10px;
       }
@@ -66,7 +99,7 @@
     .image {
       height: 200px;
     }
-    h1 {
+    h2 {
       font-size: 14px;
     }
   }

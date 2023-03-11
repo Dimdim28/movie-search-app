@@ -24,6 +24,7 @@ export interface MoviesSliceState {
   movies: Movies;
   currentPage: number;
   search: string;
+  favorites: Movie[];
 }
 
 export type SearchMoviesParams = {

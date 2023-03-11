@@ -11,6 +11,7 @@ const initialState: MoviesSliceState = {
   search: "star",
   currentPage: 1,
   status: Status.LOADING,
+  favorites: [],
 };
 
 const moviesSlice = createSlice({
@@ -22,6 +23,14 @@ const moviesSlice = createSlice({
     },
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
+    },
+    addFavorite(state, action) {
+      state.favorites = [...state.favorites, action.payload];
+    },
+    removeFavorite(state, action) {
+      state.favorites = state.favorites.filter(
+        (favorite) => favorite.imdbID !== action.payload
+      );
     },
   },
   extraReducers: (builder) => {
@@ -39,6 +48,7 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { setSearchValue, setCurrentPage } = moviesSlice.actions;
+export const { setSearchValue, setCurrentPage, addFavorite, removeFavorite } =
+  moviesSlice.actions;
 
 export default moviesSlice.reducer;
